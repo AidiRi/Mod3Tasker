@@ -3,41 +3,44 @@
   <head>
     <meta charset="utf-8">
     <title>Mod3Tasker</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="src/main.js"></script>
   </head>
   <body>
     <header>
       <h1>Mod3Tasker</h1>
     </header>
+    <main class="container">
 
-    <container class="project-level">
-      <select class="" name="project-dropdown">
-        <option disabled="disabled" selected="selected"> Select a project </option>
-        <!-- dropdown options go here -->
-      </select>
 
-      <!-- Project CRUD options go here! -->
-    </container>
+      <div class="project-level">
+        <select class="" name="project-dropdown">
+          <option disabled="disabled" selected="selected"> Select a project </option>
+          <!-- dropdown options go here -->
+        </select>
 
-    <main>
-      <div id="tasks-input">
-        <form class="">
-          <input type="text" name="new-task-input" placeholder="create new task">
-          <input type="submit" value="create">
-        </form>
-
+        <!-- Project CRUD options go here! -->
       </div>
 
-      <div id="tasks-div">
-        <h4>tasks</h4>
-        <!-- todos go here -->
+      <div class="task-level">
+        <div id="tasks-input">
+          <form class="">
+            <input type="text" name="new-task-input" placeholder="create new task">
+            <input type="submit" value="create">
+          </form>
+
+        </div>
+
+        <div id="tasks-div">
+          <h4>tasks</h4>
+          <!-- todos go here -->
+        </div>
+        <div id="done-div">
+          <h4>done</h4>
+          <!-- completed todo go here -->
+        </div>
       </div>
-      <div id="done-div">
-        <h4>done</h4>
-        <!-- completed todo go here -->
-      </div>
+
     </main>
-
-
   </body>
 </html>
