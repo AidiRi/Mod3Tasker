@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", ()=> main() )
 
 
 function main() {
-  createTask()
+	
+	getAllTasks();
+  createTask();
 
 
 
@@ -17,7 +19,6 @@ function createTask() {
   })
 }
 function postTask(taskForm) {
-  console.log("check")
   const configObj = {
     method: "POST",
     headers: {
@@ -28,11 +29,32 @@ function postTask(taskForm) {
       name: taskForm["new-task-input"].value,
       status: "open",
       project_id: 1
-            // fix this once we have project routes
+      // fix this once we have project routes
 
     })
   };
-    console.log("check")
   fetch("http://localhost:3000/tasks", configObj)
+  	.then(response => response.json())
+  	.then(json => displayTask(json));
+}
 
+function displayTask(json) {
+	const taskDiv = document.querySelector("#task-div");
+	const taskUl = document.querySelector("#task-ul");
+	const taskLi = document.createElement("li");
+	
+	taskLi.textContent = json.name;
+	taskUl.appendChild(taskLi);
+}
+
+function getAllTasks() {
+	fetch("http://localhost:3000/tasks")
+		.then(response => response.json())
+		.then(json => displayAllTasks(json));
+}
+
+function displayAllTasks(json) {
+	for (let i = 0; i < json.length; i++) {
+		displayTask(json[i]);
+	}	
 }
