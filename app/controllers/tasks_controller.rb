@@ -10,6 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
+
     task = Task.create(task_params)
   end
 
@@ -17,6 +18,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :project_id, :status)
+    params.require(:task).permit(:name, :project_id, :status, :authenticity_token)
   end
+
 end
