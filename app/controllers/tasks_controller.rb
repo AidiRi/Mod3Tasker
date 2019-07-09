@@ -15,6 +15,9 @@ class TasksController < ApplicationController
     render json: task
   end
 
+	def destroy
+		Task.destroy(params[:id]);
+	end
 
   private
 
