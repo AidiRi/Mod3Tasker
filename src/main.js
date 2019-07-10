@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", ()=> main() )
 function main() {
 	
 	getAllTasks();
-  createTask();
+	createTask();
 
 
 
@@ -42,13 +42,27 @@ function displayTask(json) {
 	const taskDiv = document.querySelector("#task-div");
 	const taskUl = document.querySelector("#task-ul");
 	const taskLi = document.createElement("li");
+	const taskSpan = document.createElement("span")
+	const taskInput = document.createElement("input");
 	const taskDelButton = document.createElement("button");
+	const taskEditButton = document.createElement("button");
+
 	
-	taskLi.textContent = json.name;
+	taskSpan.textContent = json.name;
+	taskInput.value = taskSpan.textContent;
+	taskInput.className = "hidden";
 	taskDelButton.textContent = "X";
-	
+	taskEditButton.textContent = "Edit";
+
+	taskLi.appendChild(taskSpan)
+	taskLi.appendChild(taskInput)
+	taskLi.appendChild(taskEditButton);
 	taskLi.appendChild(taskDelButton);
 	taskUl.appendChild(taskLi);
+
+	taskEditButton.addEventListener("click", () => {
+		editTask(taskUl, taskSpan, taskInput, json);
+	})
 	
 	taskDelButton.addEventListener("click", () => {
 		deleteTask(taskUl, taskLi, json);
@@ -81,4 +95,24 @@ function deleteTask(taskUl, taskLi, json) {
 	taskUl.removeChild(taskLi);
 }
 
+function editTask(taskUl, taskSpan, taskInput, json){
+	taskSpan.className = "hidden"
+	taskInput.classList.remove("hidden")
 
+	taskInput.addEventListener("change", () => {
+		fetch(`http://localhost:3000/tasks/${json.id}`,{
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json"
+			},
+			body:JSON.stringify({
+				name: event.target.value
+			})
+		})
+
+		taskSpan.textContent = event.target.value
+		taskSpan.classList.remove("hidden")
+		taskInput.className = "hidden"
+	})
+}
