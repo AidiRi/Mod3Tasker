@@ -21,6 +21,9 @@ function displayAllTasks(json) {
 		if (json[i].status === "open") {
 			displayOpenTask(json[i]);
 		} else {
+// 		send individual closed task to a function that gathers closed tasks
+// 		then use a sorting function that sorts closed tasks by update time
+// 		then iterate through the sorted collection / array and send to displayClosedTask
 			displayClosedTask(json[i]);
 		}		
 	}	
@@ -66,15 +69,20 @@ function displayOpenTask(json) {
 function displayClosedTask(json) {
 	const doneUl = document.querySelector("#done-ul");
 	const doneLi = document.createElement("li");
+	const doneDelButton = document.createElement("button");
 	
 	doneLi.textContent = json.name;
-	doneUl.appendChild(doneLi);	
+	doneDelButton.textContent = "Remove";
+	doneLi.appendChild(doneDelButton);
+	doneUl.appendChild(doneLi);
+	
+	doneDelButton.addEventListener("click", () => {
+		deleteDone(doneUl, doneLi, json);
+	});	
 }
 
 function doneTask(taskUl, taskLi, json) {
 	json.status = "closed";
-	displayClosedTask(json);
-
 	taskUl.removeChild(taskLi);
 
 	fetch(`http://localhost:3000/tasks/${json.id}`,{
@@ -87,6 +95,8 @@ function doneTask(taskUl, taskLi, json) {
 			status: "closed"
 		})
 	})
+		.then(response => response.json())
+		.then(json => displayClosedTask(json));
 }
 
 function editTask(taskUl, taskSpan, taskInput, json){
@@ -123,6 +133,22 @@ function deleteTask(taskUl, taskLi, json) {
 	fetch(`http://localhost:3000/tasks/${json.id}`, configObj)
 	
 	taskUl.removeChild(taskLi);
+}
+
+
+// possibly re-factor this function and deleteTask function since code is similar
+function deleteDone(doneUl, doneLi, json) {
+	const configObj = {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json"
+		}
+	}
+	
+	fetch(`http://localhost:3000/tasks/${json.id}`, configObj)
+	
+	doneUl.removeChild(doneLi);
 }
 
 
