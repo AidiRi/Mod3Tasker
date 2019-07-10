@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=> main() )
 
 
 function main() {
-	
+
 	getAllTasks();
 	createTask();
 
@@ -47,7 +47,7 @@ function displayTask(json) {
 	const taskDelButton = document.createElement("button");
 	const taskEditButton = document.createElement("button");
 
-	
+
 	taskSpan.textContent = json.name;
 	taskInput.value = taskSpan.textContent;
 	taskInput.className = "hidden";
@@ -63,7 +63,7 @@ function displayTask(json) {
 	taskEditButton.addEventListener("click", () => {
 		editTask(taskUl, taskSpan, taskInput, json);
 	})
-	
+
 	taskDelButton.addEventListener("click", () => {
 		deleteTask(taskUl, taskLi, json);
 	})
@@ -78,10 +78,10 @@ function getAllTasks() {
 function displayAllTasks(json) {
 	for (let i = 0; i < json.length; i++) {
 		displayTask(json[i]);
-	}	
+	}
 }
 
-function deleteTask(taskUl, taskLi, json) {	
+function deleteTask(taskUl, taskLi, json) {
 	const configObj = {
 		method: "DELETE",
 		headers: {
@@ -89,9 +89,9 @@ function deleteTask(taskUl, taskLi, json) {
 			"Accept": "application/json"
 		}
 	}
-	
+
 	fetch(`http://localhost:3000/tasks/${json.id}`, configObj)
-	
+
 	taskUl.removeChild(taskLi);
 }
 
