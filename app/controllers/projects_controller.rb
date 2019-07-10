@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
 
   def create
     project = Project.create(project_params)
+    render json: project
   end
 
 
