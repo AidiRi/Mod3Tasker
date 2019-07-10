@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => projectMain())
-    
+
 function projectMain(){
 
     newProject();
@@ -20,6 +20,7 @@ function getAllProject(json){
 
 function displayProject(json){
     let selectOp = document.getElementsByClassName('project-select')[0];
+    console.log("check");
     let dropDownOp = document.createElement('option');
 
     dropDownOp.textContent = json.name;
@@ -64,4 +65,3 @@ function createNewProject(projectInput, newPrjBtn, json){
         projectInput.className = "hidden"
     })
 }
-

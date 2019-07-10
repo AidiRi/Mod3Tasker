@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=> main() )
 
 
 function main() {
-	
+
 	getAllTasks();
 	createTask();
 
@@ -17,7 +17,7 @@ function getAllTasks() {
 
 function displayAllTasks(json) {
 	for (let i = 0; i < json.length; i++) {
-		
+
 		if (json[i].status === "open") {
 			displayOpenTask(json[i]);
 		} else {
@@ -25,8 +25,8 @@ function displayAllTasks(json) {
 // 		then use a sorting function that sorts closed tasks by update time
 // 		then iterate through the sorted collection / array and send to displayClosedTask
 			displayClosedTask(json[i]);
-		}		
-	}	
+		}
+	}
 }
 
 function displayOpenTask(json) {
@@ -38,7 +38,6 @@ function displayOpenTask(json) {
 	const taskDoneButton = document.createElement("button");
 	const taskEditButton = document.createElement("button");
 	const taskDelButton = document.createElement("button");
-	
 	taskSpan.textContent = json.name;
 	taskInput.value = taskSpan.textContent;
 	taskInput.className = "hidden";
@@ -55,7 +54,7 @@ function displayOpenTask(json) {
 	taskLi.appendChild(taskEditButton);
 	taskLi.appendChild(taskDoneButton);
 	taskUl.appendChild(taskLi);
-	
+
 	taskDoneButton.addEventListener("click", () => {
 		doneTask(taskUl, taskLi, json);
 	})
@@ -63,7 +62,7 @@ function displayOpenTask(json) {
 	taskEditButton.addEventListener("click", () => {
 		editTask(taskUl, taskSpan, taskInput, json);
 	})
-	
+
 	taskDelButton.addEventListener("click", () => {
 		deleteTask(taskUl, taskLi, json);
 	})
@@ -73,16 +72,16 @@ function displayClosedTask(json) {
 	const doneUl = document.querySelector("#done-ul");
 	const doneLi = document.createElement("li");
 	const doneDelButton = document.createElement("button");
-	
+
 	doneLi.textContent = json.name;
 	doneDelButton.textContent = "Remove";
 	doneDelButton.className = "done-btn";
 	doneLi.appendChild(doneDelButton);
 	doneUl.appendChild(doneLi);
-	
+
 	doneDelButton.addEventListener("click", () => {
 		deleteDone(doneUl, doneLi, json);
-	});	
+	});
 }
 
 function doneTask(taskUl, taskLi, json) {
@@ -125,7 +124,7 @@ function editTask(taskUl, taskSpan, taskInput, json){
 	})
 }
 
-function deleteTask(taskUl, taskLi, json) {	
+function deleteTask(taskUl, taskLi, json) {
 	const configObj = {
 		method: "DELETE",
 		headers: {
@@ -133,9 +132,9 @@ function deleteTask(taskUl, taskLi, json) {
 			"Accept": "application/json"
 		}
 	}
-	
+
 	fetch(`http://localhost:3000/tasks/${json.id}`, configObj)
-	
+
 	taskUl.removeChild(taskLi);
 }
 
@@ -149,9 +148,9 @@ function deleteDone(doneUl, doneLi, json) {
 			"Accept": "application/json"
 		}
 	}
-	
+
 	fetch(`http://localhost:3000/tasks/${json.id}`, configObj)
-	
+
 	doneUl.removeChild(doneLi);
 }
 
@@ -185,6 +184,3 @@ function postTask(taskForm) {
   	.then(response => response.json())
   	.then(json => displayOpenTask(json));
 }
-
-
-
