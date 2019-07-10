@@ -1,19 +1,71 @@
 body {
-  margin: 0 auto 0 auto;
-  width: 75vw;
-  min-width: 500px;
+  margin: 0;
+  width: 100vw;
+  font-family: 'Raleway', sans-serif;
 }
-main {
-  background-color: #bec7d4;
-  width: 85%;
 
+header {
+  padding: 10px 30px 0 20px;
+  background-color: #6129a6;
+  /* #6129a6 #812c96 */
+  margin: 0;
+  color: white;
 }
+
+#app-header, #user-header {
+  display: inline-block;
+}
+
+#app-header {
+  font-family: 'Raleway', sans-serif;
+  /* font-weight: 800; */
+}
+
+#user-header{
+  float: right;
+  font-weight: 400;
+}
+.header-title, .container  {
+  width: 60%;
+  min-width: 500px;
+  margin: auto;
+}
+
+#today-div {
+  min-width: 500px;
+  /* width: 50%; */
+  height: 200px;
+  /* background: gray; */
+  /* text-align: left; */
+  /* margin: auto; */
+  font-size: 30px;
+  padding-left: 20%;
+}
+
+.project-level {
+  min-width: 500px;
+  /* width: 50%; */
+  height: 30px;
+  /* margin: 0 auto 0 auto; */
+  /* background-color: yellow; */
+}
+
+.container {
+  background-color: #d5dde8;
+  /* width: 75%;
+  margin: 0 auto 0 auto; */
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /* min-width: 500px; */
+}
+
 
 #task-div {
   display: inline-block;
   width: 45%;
   padding: 0 2% 0 2%;
 }
+
 #done-div {
   display: inline-block;
   width: 45%;
@@ -22,4 +74,8 @@ main {
 
 .hidden{
   display: none;
+}
+
+#done-div li button {
+float: right
 }

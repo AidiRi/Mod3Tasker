@@ -4,30 +4,40 @@
     <meta charset="utf-8">
     <title>Mod3Tasker</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,800&display=swap" rel="stylesheet">
     <script type="text/javascript" src="src/main.js"></script>
   </head>
   <body>
     <header>
-      <h1 id="app-header">Mod3Tasker App</h1>
-      <h2 id="user-header">User</h2>
-      <div class="">
-        <h1>Today's Tasks</h1>
-        <h2 id="date-header">Date</h2>
+
+      <nav>
+        <h1 id="app-header">Mod3Tasker</h1>
+        <h2 id="user-header">User</h2>
+      </nav>
+
+      <div class="header-title">
+        <div id="today-div">
+          <h1>Today's Tasks</h1>
+          <h2 id="date-header">Wed, July 10</h2>
+        </div>
+
+        <div class="project-level">
+          <select class="" name="project-dropdown">
+            <option disabled="disabled" selected="selected"> Select a project </option>
+            <!-- dropdown options go here -->
+          </select>
+          <!-- Project CRUD options go here! -->
+        </div>
       </div>
+
+
     </header>
+
     <main class="container">
-      <div class="user-level">
+      <!-- <div class="user-level">
+      </div> -->
 
-      </div>
 
-      <div class="project-level">
-        <select class="" name="project-dropdown">
-          <option disabled="disabled" selected="selected"> Select a project </option>
-          <!-- dropdown options go here -->
-        </select>
-
-        <!-- Project CRUD options go here! -->
-      </div>
 
       <div class="task-level">
         <div id="task-input">
