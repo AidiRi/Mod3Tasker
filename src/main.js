@@ -43,14 +43,17 @@ function displayOpenTask(json) {
 	taskInput.value = taskSpan.textContent;
 	taskInput.className = "hidden";
 	taskDoneButton.textContent = "Done";
+	taskDoneButton.className = "task-done-btn";
 	taskDelButton.textContent = "X";
+	taskDelButton.className = "task-delete-btn";
 	taskEditButton.textContent = "Edit";
+	taskEditButton.className = "task-edit-btn";
 
 	taskLi.appendChild(taskSpan);
 	taskLi.appendChild(taskInput);
-	taskLi.appendChild(taskDoneButton);
-	taskLi.appendChild(taskEditButton);
 	taskLi.appendChild(taskDelButton);
+	taskLi.appendChild(taskEditButton);
+	taskLi.appendChild(taskDoneButton);
 	taskUl.appendChild(taskLi);
 	
 	taskDoneButton.addEventListener("click", () => {
@@ -73,6 +76,7 @@ function displayClosedTask(json) {
 	
 	doneLi.textContent = json.name;
 	doneDelButton.textContent = "Remove";
+	doneDelButton.className = "done-btn";
 	doneLi.appendChild(doneDelButton);
 	doneUl.appendChild(doneLi);
 	

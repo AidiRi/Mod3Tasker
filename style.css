@@ -23,3 +23,27 @@ main {
 .hidden{
   display: none;
 }
+
+.task-done-btn {
+	border-radius: 20px;
+	border: 1px solid green;	
+	float: right;
+}
+
+.task-edit-btn {
+	border-radius: 20px;
+	border: 1px solid red;	
+	float: right;
+}
+
+.task-delete-btn {
+	border-radius: 20px;
+	border: 1px solid black;	
+	float: right;
+}
+
+.done-btn {
+	border-radius: 20px;
+	border: 1px solid black;
+	float: right;
+}
