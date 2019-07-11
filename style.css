@@ -60,27 +60,20 @@ header {
 }
 
 #task-wrap {
-	justify-content: center;
-/* 	display: flex; */
+  background-color: #d5dde8;
+	justify-content: space-evenly;
+	display: flex;
 	min-width: 580px;
 }
 
 #task-div {
-  display: inline-block;
-/*   width: 44%; */
-/*   padding: 0 0% 0 2%; */
   vertical-align: top;
   min-width: 275px;
-	float: left;
 }
 
-#done-div {
-  display: inline-block;
-/*   width: 44%; */
-/*   padding: 0 2% 0 0%; */
+#done-div {	
   vertical-align: top;
   min-width: 275px;
-	float: right;
 }
 
 .hidden{
