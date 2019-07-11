@@ -130,3 +130,11 @@ container {
   font-weight: 100;
   font-size: 12px;
 }
+
+li span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 59%;
+}
