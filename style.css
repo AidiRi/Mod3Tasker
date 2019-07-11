@@ -7,7 +7,6 @@ body {
 header {
   padding: 10px 30px 0 20px;
   background-color: #6129a6;
-  /* #6129a6 #812c96 */
   margin: 0;
   color: white;
 }
@@ -18,13 +17,13 @@ header {
 
 #app-header {
   font-family: 'Raleway', sans-serif;
-  /* font-weight: 800; */
 }
 
 #user-header{
   float: right;
   font-weight: 400;
 }
+
 .header-title, .container  {
   width: 60%;
   min-width: 500px;
@@ -33,27 +32,18 @@ header {
 
 #today-div {
   min-width: 500px;
-  /* width: 50%; */
   height: 200px;
-  /* background: gray; */
-  /* text-align: left; */
-  /* margin: auto; */
   font-size: 30px;
   padding-left: 20%;
 }
 
 .project-level {
   min-width: 500px;
-  /* width: 50%; */
   height: 30px;
-  /* margin: 0 auto 0 auto; */
-  /* background-color: yellow; */
 }
 
 .container {
   background-color: #d5dde8;
-  /* width: 75%;
-  margin: 0 auto 0 auto; */
   margin-top: 30px;
   margin-bottom: 30px;
   min-width: 600px;
@@ -78,6 +68,33 @@ header {
 
 .hidden{
   display: none;
+}
+
+h4 {
+	text-align: center;
+}
+
+ul {
+	padding-left: 0;
+	margin-left: 1em;
+}
+
+li {
+	max-width: 250px;
+}
+
+li span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 57%;
+}
+
+.error-message {
+  color:red;
+  font-weight: 100;
+  font-size: 12px;
 }
 
 #task-input-btn {
@@ -106,35 +123,4 @@ header {
 	border-radius: 20px;
 	border: 1px solid black;
 	float: right;
-}
-
-
-h4 {
-	text-align: center;
-}
-
-
-li {
-/* 	text-align: left; */
-	min-width: 250px;
-}
-/*
-container {
-	display: inline;
-	vertical-align: top;
-}
-*/
-
-.error-message {
-  color:red;
-  font-weight: 100;
-  font-size: 12px;
-}
-
-li span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  max-width: 59%;
 }
