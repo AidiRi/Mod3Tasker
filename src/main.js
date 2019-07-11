@@ -118,15 +118,14 @@ function displayOpenTask(json) {
 
 function displayClosedTask(json) {
 	const doneUl = document.querySelector("#done-ul");
-
-
-
 	const doneLi = document.createElement("li");
+	const doneSpan = document.createElement("span")
 	const doneDelButton = document.createElement("button");
 
-	doneLi.textContent = json.name;
+	doneSpan.textContent = json.name;
 	doneDelButton.textContent = "Remove";
 	doneDelButton.className = "done-btn";
+	doneLi.appendChild(doneSpan);
 	doneLi.appendChild(doneDelButton);
 	doneUl.appendChild(doneLi);
 
