@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => projectMain())
-    
+
 function projectMain(){
 
     newProject();
