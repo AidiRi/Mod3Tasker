@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => projectMain())
 
 function projectMain(){
 
-    newProject();
+    displayingElements();
     fetchingProject();
 }
 
@@ -22,8 +22,7 @@ function getAllProject(json){
 function displayProject(json){
     let selectOp = document.getElementsByClassName("project-select")[0];
     let dropDownOp = document.createElement("option");
-    dropDownOp.setAttribute('value', json.id)
-
+    dropDownOp.setAttribute("value", json.id)
 
     dropDownOp.textContent = json.name;
 
@@ -31,23 +30,33 @@ function displayProject(json){
 
 }
 
-function newProject(){
-    let Pj = document.getElementsByClassName("project-level")[0];
-    let projectInput = document.createElement("input");
+function displayingElements(){
+    let pJ = document.getElementsByClassName("project-level")[0];
+    let newProjectInput = document.createElement("input");
+    let projectEditInput = document.createElement("input");
     let newPrjBtn = document.createElement("button");
     let delPrjBtn = document.createElement("button");
+    let editPrjBtn = document.createElement("button");
 
     newPrjBtn.textContent = "New Project";
+    editPrjBtn.textContent = "Edit Button";
     delPrjBtn.textContent = "Delete Project";
 
-    Pj.appendChild(projectInput);
-    Pj.appendChild(newPrjBtn);
-    Pj.appendChild(delPrjBtn);
+    pJ.appendChild(newProjectInput);
+    pJ.appendChild(projectEditInput);
+    pJ.appendChild(newPrjBtn);
+    pJ.appendChild(editPrjBtn);
+    pJ.appendChild(delPrjBtn);
 
-    projectInput.className = "hidden"
+    newProjectInput.className = "hidden";
+    projectEditInput.className = "hidden";
 
     newPrjBtn.addEventListener("click", () => {
-        createNewProject(projectInput);
+        createNewProject(newProjectInput)
+    })
+
+    editPrjBtn.addEventListener("click", () => {
+        updateRequest(projectEditInput)
     })
 
     delPrjBtn.addEventListener("click", () => {
@@ -56,10 +65,10 @@ function newProject(){
 
 }
 
-function createNewProject(projectInput){
-    projectInput.classList.remove("hidden");
+function createNewProject(newProjectInput){
+    newProjectInput.classList.remove("hidden");
 
-    projectInput.addEventListener("change", () => {
+    newProjectInput.addEventListener("change", () => {
         fetch("http://localhost:3000/projects", {
             method: "POST",
             headers: {
@@ -73,14 +82,43 @@ function createNewProject(projectInput){
         })
         .then(resp => resp.json())
         .then(json => displayProject(json))
-        projectInput.value = ""
-        projectInput.className = "hidden"
+        newProjectInput.value = ""
+        newProjectInput.className = "hidden"
+    })
+}
+
+function updateRequest(projectEditInput){
+    projectEditInput.classList.remove("hidden");
+    let id = parseInt(document.querySelector(".project-select").value)
+    console.log(id)
+    projectEditInput.addEventListener("change", () => {
+        fetch(`http://localhost:3000/projects/${id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: event.target.value,
+                user_id: 1
+            })
+        })
+        .then(resp => resp.json())
+        .then(json => {
+            const opContent = document.querySelector(".project-select")
+            for (let i = 1; i < opContent.children.length; i++){
+                if (parseInt(opContent.children[i].value) === json.id){
+                    opContent.children[i].textContent = json.name;
+                }
+            }
+        })
+        projectEditInput.value = ""
+        projectEditInput.className = "hidden"
     })
 }
 
 function deleteProject(){
     let getSelect = document.querySelector(".project-select")
-
     deleteRequest(getSelect.value)
     getSelect.remove(getSelect.selectedIndex)
 }
