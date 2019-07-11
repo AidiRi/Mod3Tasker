@@ -49,6 +49,14 @@ header {
   min-width: 600px;
 }
 
+#task-input {
+	text-align: center;
+}
+
+#task-input-field {
+	width: 40%;
+}
+
 #task-wrap {
   background-color: #d5dde8;
 	justify-content: space-evenly;
