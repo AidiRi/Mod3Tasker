@@ -2,18 +2,52 @@ document.addEventListener("DOMContentLoaded", ()=> main() )
 
 
 function main() {
-
-	getAllTasks();
+	const dropDown = document.querySelector(".project-select")
+	dropDown.addEventListener("change", () => getAllTasks() )
+	// getAllTasks();
 	createTask();
-
 
 }
 
 function getAllTasks() {
 	fetch("http://localhost:3000/tasks")
 		.then(response => response.json())
-		.then(json => displayAllTasks(json));
+		.then(json => {
+			// displayAllTasks(json);
+			fetchProjects(json);
+		});
 }
+
+function fetchProjects(tasks){
+    fetch("http://localhost:3000/projects")
+    .then(resp => resp.json())
+    .then(json => displayProjectTasks(tasks, json))
+}
+
+function displayProjectTasks(tasks, projects) {
+	const dropDown = document.querySelector(".project-select")
+	// console.log(tasks)
+	// console.log(projects)
+	for (const project of projects){
+		// console.log(`this is a project ${project.name}`)
+		const projectTasks = [];
+		if (dropDown.value === project.name) {
+			for (const task of tasks){
+				if (task.project_id === project.id) {
+					projectTasks.push(task)
+				}
+			}
+		displayAllTasks(projectTasks);
+		}
+
+
+	}
+	// if dropDownOp.textContent === project.name
+	//   if task.project.name === project.name
+	//     displayAllTasks only for those tasks
+	//     create array with all tasks that meet conditional
+}
+
 
 function displayAllTasks(json) {
 	for (let i = 0; i < json.length; i++) {
@@ -32,6 +66,11 @@ function displayAllTasks(json) {
 function displayOpenTask(json) {
 	const taskDiv = document.querySelector("#task-div");
 	const taskUl = document.querySelector("#task-ul");
+
+	if (taskUl.firstChild) {
+		taskUl.removeChild(taskUl.firstChild)
+	}
+
 	const taskLi = document.createElement("li");
 	const taskSpan = document.createElement("span")
 	const taskInput = document.createElement("input");
@@ -70,6 +109,9 @@ function displayOpenTask(json) {
 
 function displayClosedTask(json) {
 	const doneUl = document.querySelector("#done-ul");
+
+
+
 	const doneLi = document.createElement("li");
 	const doneDelButton = document.createElement("button");
 
