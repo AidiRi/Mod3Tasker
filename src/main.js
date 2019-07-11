@@ -26,7 +26,7 @@ function fetchProjects(tasks){
 
 function displayProjectTasks(tasks, projects) {
 	const dropDown = document.querySelector(".project-select")
-	// console.log(tasks)
+	console.log(tasks)
 	// console.log(projects)
 	for (const project of projects){
 		// console.log(`this is a project ${project.name}`)
@@ -50,6 +50,15 @@ function displayProjectTasks(tasks, projects) {
 
 
 function displayAllTasks(json) {
+	const taskUl = document.querySelector("#task-ul");
+	const doneUl = document.querySelector("#done-ul");
+	while (taskUl.firstChild) {
+		taskUl.removeChild(taskUl.firstChild)
+	}
+	while (doneUl.firstChild) {
+		doneUl.removeChild(doneUl.firstChild)
+	}
+
 	for (let i = 0; i < json.length; i++) {
 
 		if (json[i].status === "open") {
@@ -67,9 +76,7 @@ function displayOpenTask(json) {
 	const taskDiv = document.querySelector("#task-div");
 	const taskUl = document.querySelector("#task-ul");
 
-	if (taskUl.firstChild) {
-		taskUl.removeChild(taskUl.firstChild)
-	}
+
 
 	const taskLi = document.createElement("li");
 	const taskSpan = document.createElement("span")
