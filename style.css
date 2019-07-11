@@ -56,24 +56,39 @@ header {
   margin: 0 auto 0 auto; */
   margin-top: 30px;
   margin-bottom: 30px;
-  /* min-width: 500px; */
+  min-width: 600px;
 }
 
+#task-wrap {
+	justify-content: center;
+/* 	display: flex; */
+	min-width: 580px;
+}
 
 #task-div {
   display: inline-block;
-  width: 45%;
-  padding: 0 2% 0 2%;
+/*   width: 44%; */
+/*   padding: 0 0% 0 2%; */
+  vertical-align: top;
+  min-width: 275px;
+	float: left;
 }
 
 #done-div {
   display: inline-block;
-  width: 45%;
-    padding: 0 2% 0 2%;
+/*   width: 44%; */
+/*   padding: 0 2% 0 0%; */
+  vertical-align: top;
+  min-width: 275px;
+	float: right;
 }
 
 .hidden{
   display: none;
+}
+
+#task-input-btn {
+	border-radius: 20px;
 }
 
 .task-done-btn {
@@ -99,3 +114,20 @@ header {
 	border: 1px solid black;
 	float: right;
 }
+
+
+h4 {
+	text-align: center;
+}
+
+
+li {
+/* 	text-align: left; */
+	min-width: 250px;
+}
+/*
+container {
+	display: inline;
+	vertical-align: top;
+}
+*/
