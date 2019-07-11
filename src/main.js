@@ -208,7 +208,9 @@ function deleteDone(doneUl, doneLi, json) {
 
 function createTask() {
   const taskForm = document.querySelector("#task-form")
+	const taskError = document.querySelector("#task-error");
 
+	taskForm.addEventListener("click", ()=> taskError.classList.add("hidden"))
   taskForm.addEventListener("submit", function(event) {
     event.preventDefault()
 		const inputValue = event.target["new-task-input"].value;
@@ -218,12 +220,10 @@ function createTask() {
 			taskForm.reset();
 		} else {
 			taskForm.reset();
-			const taskError = document.querySelector("#task-error");
 			taskError.textContent = "No task name";
-			taskError.classList.remove("hidden");
+			taskError.classList.remove('hidden');
+						console.log(taskError)
 		}
-		console.log("checked input value")
-
   })
 }
 
