@@ -29,10 +29,10 @@ function displayProjectTasks(tasks, projects) {
 	// console.log(tasks)
 	console.log(projects)
 	for (const project of projects){
-		console.log(`this is a project ${project.name}`)
+		// console.log(`this is a project ${project.name}`)
 		const projectTasks = [];
 		if (dropDown.value == project.id) {
-			console.log(dropDown.value)
+			// console.log(dropDown.value)
 			for (const task of tasks){
 				if (task.project_id == project.id) {
 					projectTasks.push(task)
@@ -211,8 +211,19 @@ function createTask() {
 
   taskForm.addEventListener("submit", function(event) {
     event.preventDefault()
-    postTask(taskForm)
-    taskForm.reset();
+		const inputValue = event.target["new-task-input"].value;
+
+		if (inputValue.length > 0) {
+			postTask(taskForm)
+			taskForm.reset();
+		} else {
+			taskForm.reset();
+			const taskError = document.querySelector("#task-error");
+			taskError.textContent = "No task name";
+			taskError.classList.remove("hidden");
+		}
+		console.log("checked input value")
+
   })
 }
 

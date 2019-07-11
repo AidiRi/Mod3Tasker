@@ -71,7 +71,7 @@ header {
   min-width: 275px;
 }
 
-#done-div {	
+#done-div {
   vertical-align: top;
   min-width: 275px;
 }
@@ -124,3 +124,9 @@ container {
 	vertical-align: top;
 }
 */
+
+.error-message {
+  color:red;
+  font-weight: 100;
+  font-size: 12px;
+}
