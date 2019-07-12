@@ -6,7 +6,12 @@ function main() {
 	dropDown.addEventListener("change", () => getAllTasks() )
 	// getAllTasks();
 	createTask();
+	setDate();
+}
 
+function setDate() {
+	const dateDisplay = document.querySelector("#date-header");
+	dateDisplay.textContent = (new Date).toDateString();	
 }
 
 function getAllTasks() {
