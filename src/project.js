@@ -52,7 +52,8 @@ function displayingElements(){
     projectEditInput.className = "hidden";
 
     newPrjBtn.addEventListener("click", () => {
-        createNewProject(newProjectInput)
+      newProjectInput.classList.remove("hidden");
+        //createNewProject(newProjectInput)
     })
 
     editPrjBtn.addEventListener("click", () => {
@@ -62,11 +63,6 @@ function displayingElements(){
     delPrjBtn.addEventListener("click", () => {
         deleteProject()
     })
-
-}
-
-function createNewProject(newProjectInput){
-    newProjectInput.classList.remove("hidden");
 
     newProjectInput.addEventListener("change", () => {
         fetch("http://localhost:3000/projects", {
@@ -81,11 +77,37 @@ function createNewProject(newProjectInput){
             })
         })
         .then(resp => resp.json())
-        .then(json => displayProject(json))
-        newProjectInput.value = ""
-        newProjectInput.className = "hidden"
+        .then(json => {
+          console.log(json);
+          displayProject(json)})
+          newProjectInput.value = ""
+          newProjectInput.className = "hidden"
     })
 }
+
+// function createNewProject(newProjectInput){
+//     newProjectInput.classList.remove("hidden");
+//
+//     newProjectInput.addEventListener("change", () => {
+//         fetch("http://localhost:3000/projects", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Accept": "application/json"
+//             },
+//             body: JSON.stringify({
+//                 name: event.target.value,
+//                 user_id: 1
+//             })
+//         })
+//         .then(resp => resp.json())
+//         .then(json => {
+//           console.log(json);
+//           displayProject(json)})
+//         newProjectInput.value = ""
+//         newProjectInput.className = "hidden"
+//     })
+// }
 
 function updateRequest(projectEditInput){
     projectEditInput.classList.remove("hidden");
