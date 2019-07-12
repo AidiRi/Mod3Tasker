@@ -56,14 +56,6 @@ function displayingElements(){
         //createNewProject(newProjectInput)
     })
 
-    editPrjBtn.addEventListener("click", () => {
-        updateRequest(projectEditInput)
-    })
-
-    delPrjBtn.addEventListener("click", () => {
-        deleteProject()
-    })
-
     newProjectInput.addEventListener("change", () => {
         fetch("http://localhost:3000/projects", {
             method: "POST",
@@ -83,6 +75,43 @@ function displayingElements(){
           newProjectInput.value = ""
           newProjectInput.className = "hidden"
     })
+
+    editPrjBtn.addEventListener("click", () => {
+        projectEditInput.classList.remove("hidden");
+        // updateRequest(projectEditInput)
+    })
+
+    projectEditInput.addEventListener("change", () => {
+      let id = parseInt(document.querySelector(".project-select").value)
+        fetch(`http://localhost:3000/projects/${id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: event.target.value,
+                user_id: 1
+            })
+        })
+        .then(resp => resp.json())
+        .then(json => {
+            const opContent = document.querySelector(".project-select")
+            for (let i = 1; i < opContent.children.length; i++){
+                if (parseInt(opContent.children[i].value) === json.id){
+                    opContent.children[i].textContent = json.name;
+                }
+            }
+        })
+        projectEditInput.value = ""
+        projectEditInput.className = "hidden"
+    })
+
+    delPrjBtn.addEventListener("click", () => {
+        deleteProject()
+    })
+
+
 }
 
 // function createNewProject(newProjectInput){
@@ -109,35 +138,34 @@ function displayingElements(){
 //     })
 // }
 
-function updateRequest(projectEditInput){
-    projectEditInput.classList.remove("hidden");
-    let id = parseInt(document.querySelector(".project-select").value)
-    console.log(id)
-    projectEditInput.addEventListener("change", () => {
-        fetch(`http://localhost:3000/projects/${id}`,{
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: event.target.value,
-                user_id: 1
-            })
-        })
-        .then(resp => resp.json())
-        .then(json => {
-            const opContent = document.querySelector(".project-select")
-            for (let i = 1; i < opContent.children.length; i++){
-                if (parseInt(opContent.children[i].value) === json.id){
-                    opContent.children[i].textContent = json.name;
-                }
-            }
-        })
-        projectEditInput.value = ""
-        projectEditInput.className = "hidden"
-    })
-}
+// function updateRequest(projectEditInput){
+// 
+//     projectEditInput.addEventListener("change", () => {
+//       let id = parseInt(document.querySelector(".project-select").value)
+//         fetch(`http://localhost:3000/projects/${id}`,{
+//             method: "PATCH",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Accept": "application/json"
+//             },
+//             body: JSON.stringify({
+//                 name: event.target.value,
+//                 user_id: 1
+//             })
+//         })
+//         .then(resp => resp.json())
+//         .then(json => {
+//             const opContent = document.querySelector(".project-select")
+//             for (let i = 1; i < opContent.children.length; i++){
+//                 if (parseInt(opContent.children[i].value) === json.id){
+//                     opContent.children[i].textContent = json.name;
+//                 }
+//             }
+//         })
+//         projectEditInput.value = ""
+//         projectEditInput.className = "hidden"
+//     })
+// }
 
 function deleteProject(){
     let getSelect = document.querySelector(".project-select")
