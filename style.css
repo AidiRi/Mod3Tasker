@@ -146,3 +146,34 @@ li span {
 	border: 1px solid black;
 	float: right;
 }
+
+.project-level button {
+  background-color: white;
+  float: right;
+}
+button {
+  font-family: Raleway;
+}
+
+.project-select {
+  width: 245px;
+  height: 20px;
+  overflow: hidden;
+  border: 0px solid white;
+  background-color: white;
+  color: black;
+  overflow: hidden;
+  border-radius: 5px;
+  text-align: center;
+    font-family: Raleway;
+}
+
+select {
+  background: transparent;
+  /* width: 250px; */
+  font-size: 15px;
+  border: 0;
+  border-radius: 0;
+  height: 28px;
+  font-family: Raleway;
+}

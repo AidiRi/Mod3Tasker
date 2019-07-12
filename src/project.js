@@ -44,9 +44,9 @@ function displayingElements(){
 
     pJ.appendChild(newProjectInput);
     pJ.appendChild(projectEditInput);
-    pJ.appendChild(newPrjBtn);
-    pJ.appendChild(editPrjBtn);
     pJ.appendChild(delPrjBtn);
+    pJ.appendChild(editPrjBtn);
+    pJ.appendChild(newPrjBtn);
 
     newProjectInput.className = "hidden";
     projectEditInput.className = "hidden";
@@ -139,7 +139,7 @@ function displayingElements(){
 // }
 
 // function updateRequest(projectEditInput){
-// 
+//
 //     projectEditInput.addEventListener("change", () => {
 //       let id = parseInt(document.querySelector(".project-select").value)
 //         fetch(`http://localhost:3000/projects/${id}`,{
