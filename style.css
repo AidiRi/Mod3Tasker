@@ -43,7 +43,7 @@ header {
 }
 
 .container {
-  background-color: #d5dde8;
+  /* background-color: #d5dde8; */
   margin-top: 30px;
   margin-bottom: 30px;
   min-width: 600px;
@@ -51,11 +51,23 @@ header {
 
 #task-input {
 	text-align: center;
+  background-color: #d5dde8;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 25px;
+  padding: 10px;
 }
 
 #task-input-field {
-	width: 40%;
+	width: 85%;
+  height: 20px;
 }
+
+::placeholder {
+  color: #d5dde8;
+  font-size: 15px;
+}
+
 
 #task-wrap {
   background-color: #d5dde8;
@@ -63,6 +75,7 @@ header {
 	display: flex;
 	min-width: 580px;
 	min-height: 300px;
+  border-radius: 5px;
 }
 
 #task-div {
